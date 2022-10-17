@@ -37,7 +37,7 @@ const handlerPost = async (req: NextApiRequest, res: NextApiResponse) => {
   });
 
   if (inviteExists) {
-    return res.status(400).json({ error: "Link já cadastrado!" });
+    return res.status(200).json(inviteExists);
   }
 
   const inviteCreated = await prisma.invite.create({
@@ -46,5 +46,5 @@ const handlerPost = async (req: NextApiRequest, res: NextApiResponse) => {
     },
   });
 
-  return res.status(200).json(inviteCreated);
+  return res.status(201).json(inviteCreated);
 };

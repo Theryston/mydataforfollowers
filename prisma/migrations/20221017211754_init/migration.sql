@@ -35,9 +35,6 @@ CREATE TABLE "invite" (
 CREATE UNIQUE INDEX "email_email_key" ON "email"("email");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "email_profileLink_key" ON "email"("profileLink");
-
--- CreateIndex
 CREATE UNIQUE INDEX "codeVerification_code_key" ON "codeVerification"("code");
 
 -- CreateIndex
