@@ -79,9 +79,6 @@ const handlerPost = async (req: NextApiRequest, res: NextApiResponse) => {
       await requestFollows({ profileLink: invite.profileLink });
     } catch (error) {
       console.error(error);
-      return res
-        .status(500)
-        .json({ error: "Erro ao solicitar seguidores para quem convidou" });
     }
   }
 
