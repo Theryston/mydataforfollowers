@@ -4,12 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm prisma:prod && pnpm jsx-mail:prod && pnpm next build",
+    "build": "pnpm init:prod && pnpm next build",
     "start": "next start",
     "lint": "next lint",
     "docker-compose": "docker-compose up -d",
     "prisma:prod": "pnpm prisma migrate deploy && pnpm prisma generate",
-    "jsx-mail:prod": "pnpm jsxm build"
+    "jsx-mail:prod": "pnpm jsxm build",
+    "init:dev": "pnpm docker-compose && pnpm prisma:prod && pnpm jsx-mail:prod",
+    "init:prod": "pnpm prisma:prod && pnpm jsx-mail:prod"
   },
   "dependencies": {
     "@fontsource/roboto": "^4.5.8",
