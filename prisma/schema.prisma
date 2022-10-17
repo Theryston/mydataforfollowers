@@ -1,0 +1,43 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model email {
+  id          Int       @default(autoincrement()) @id
+  email       String    @unique
+  profileLink String    @unique
+  isVerified  Boolean   @default(false)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  inviteId    Int?
+
+  invite      invite?   @relation(fields: [inviteId], references: [id])
+
+  codeVerifications        codeVerification[]
+}
+
+model codeVerification {
+  id          Int       @default(autoincrement()) @id
+  code        String    @unique
+  expiresAt   DateTime 
+  emailId     Int
+
+  email       email     @relation(fields: [emailId], references: [id])
+}
+
+model invite {
+  id          Int       @default(autoincrement()) @id
+  profileLink String    @unique
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  emails      email[]
+}
