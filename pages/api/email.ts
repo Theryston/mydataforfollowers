@@ -35,78 +35,78 @@ const handlerPost = async (req: NextApiRequest, res: NextApiResponse) => {
 
   return res.status(200).json({ message: "success" });
 
-  if (!email || !profileLink) {
-    return res.status(400).json({ error: "Faltando o email ou profileLink" });
-  }
+  // if (!email || !profileLink) {
+  //   return res.status(400).json({ error: "Faltando o email ou profileLink" });
+  // }
 
-  if (!validateEmail(email)) {
-    return res.status(400).json({ error: "Insira um email válido" });
-  }
+  // if (!validateEmail(email)) {
+  //   return res.status(400).json({ error: "Insira um email válido" });
+  // }
 
-  if (
-    !profileLink.startsWith("https://www.instagram.com/") &&
-    !profileLink.startsWith("https://instagram.com/")
-  ) {
-    return res
-      .status(400)
-      .json({ error: "Parece que você não digitou seu link do seu Instagram" });
-  }
+  // if (
+  //   !profileLink.startsWith("https://www.instagram.com/") &&
+  //   !profileLink.startsWith("https://instagram.com/")
+  // ) {
+  //   return res
+  //     .status(400)
+  //     .json({ error: "Parece que você não digitou seu link do seu Instagram" });
+  // }
 
-  const emailExists = await prisma.email.findUnique({
-    where: {
-      email,
-    },
-  });
+  // const emailExists = await prisma.email.findUnique({
+  //   where: {
+  //     email,
+  //   },
+  // });
 
-  if (emailExists && emailExists.isVerified) {
-    return res.status(400).json({ error: "Email já cadastrado!" });
-  }
+  // if (emailExists && emailExists.isVerified) {
+  //   return res.status(400).json({ error: "Email já cadastrado!" });
+  // }
 
-  const data: Prisma.emailCreateInput = {
-    profileLink,
-    email,
-  };
+  // const data: Prisma.emailCreateInput = {
+  //   profileLink,
+  //   email,
+  // };
 
-  if (inviteId) {
-    const invite = await prisma.invite.findUnique({
-      where: {
-        id: inviteId,
-      },
-    });
+  // if (inviteId) {
+  //   const invite = await prisma.invite.findUnique({
+  //     where: {
+  //       id: inviteId,
+  //     },
+  //   });
 
-    if (!invite) {
-      return res.status(400).json({ error: "Invite não encontrado" });
-    }
+  //   if (!invite) {
+  //     return res.status(400).json({ error: "Invite não encontrado" });
+  //   }
 
-    data.invite = {
-      connect: {
-        id: inviteId,
-      },
-    };
-  }
+  //   data.invite = {
+  //     connect: {
+  //       id: inviteId,
+  //     },
+  //   };
+  // }
 
-  const emailCreated = await prisma.email.create({
-    data,
-  });
+  // const emailCreated = await prisma.email.create({
+  //   data,
+  // });
 
-  const code = genRanHex(6);
+  // const code = genRanHex(6);
 
-  await prisma.codeVerification.create({
-    data: {
-      code,
-      expiresAt: new Date(Date.now() + 1000 * 60),
-      emailId: emailCreated.id,
-    },
-  });
+  // await prisma.codeVerification.create({
+  //   data: {
+  //     code,
+  //     expiresAt: new Date(Date.now() + 1000 * 60),
+  //     emailId: emailCreated.id,
+  //   },
+  // });
 
-  await sendEmail({
-    templateName: "VerifyEmail",
-    variables: {
-      code,
-    },
-    email: emailCreated.email,
-    subject: "Código de verificação de email",
-  });
+  // await sendEmail({
+  //   templateName: "VerifyEmail",
+  //   variables: {
+  //     code,
+  //   },
+  //   email: emailCreated.email,
+  //   subject: "Código de verificação de email",
+  // });
 
-  res.status(200).json(emailCreated);
+  // res.status(200).json(emailCreated);
 };
