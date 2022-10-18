@@ -5,7 +5,7 @@
 !prisma
 !public
 !styles
-!utils
+!util
 !jsx-mail.json
 !next.config.js
 !package.json
