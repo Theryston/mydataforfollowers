@@ -6,6 +6,7 @@ import { genRanHex } from "../../util/genRanHex";
 import { sendEmail } from "../../lib/services/sendEmail";
 import fs from "fs";
 import path from "path";
+import "../../mail/keep";
 
 type Data = {
   email: string;
