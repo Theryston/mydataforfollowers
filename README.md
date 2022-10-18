@@ -1,4 +1,4 @@
-# Exchange My Data For Followers
+# My Data For Followers
 
 This is a tool made for you to exchange your data for followers on Instagram.
 

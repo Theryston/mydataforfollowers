@@ -108,7 +108,7 @@ const Email: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Email | Exchange My Data For Followers</title>
+        <title>Email | My Data For Followers</title>
         <meta
           name="description"
           content="Troque seu email por seguidores no Instagram"

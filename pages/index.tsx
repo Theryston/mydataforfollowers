@@ -12,7 +12,7 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title>Exchange My Data For Followers</title>
+        <title>My Data For Followers</title>
         <meta
           name="description"
           content="Troque seus dados por seguidores no Instagram"

@@ -47,7 +47,7 @@ export default function Header() {
               }}
             >
               <Typography color="textPrimary" variant="h4" component="h1">
-                Exchange My Data For Followers
+                My Data For Followers
               </Typography>
             </a>
           </Link>

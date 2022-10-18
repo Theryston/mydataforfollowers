@@ -14,11 +14,11 @@ export function VerifyEmail({ code }: Props) {
         <h1>Verificação de Email</h1>
         <p>
           Este e-mail tem a finalidade de verificar o e-mail fornecido no site
-          Exchange My Data For Followers. Se você não inseriu seu endereço de
-          e-mail neste site, ignore esta mensagem e não forneça o código abaixo
-          a ninguém. No entanto, se você mesmo digitou o endereço de e-mail,
-          basta digitar o código abaixo no campo que apareceu no site após
-          digitar seu e-mail.
+          My Data For Followers. Se você não inseriu seu endereço de e-mail
+          neste site, ignore esta mensagem e não forneça o código abaixo a
+          ninguém. No entanto, se você mesmo digitou o endereço de e-mail, basta
+          digitar o código abaixo no campo que apareceu no site após digitar seu
+          e-mail.
         </p>
         <b>Código:</b>
         <Group align="center">{code}</Group>
