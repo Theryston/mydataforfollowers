@@ -1,2 +1,2 @@
 [functions]
-included_files = ["mail/*"]
+included_files = ["mail/*", "jsx-mail.json"]
