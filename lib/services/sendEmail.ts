@@ -3,6 +3,8 @@ import { render as renderTemplate } from "jsx-mail";
 
 // netlify keep dependence:
 import "@jsx-mail/components";
+import "react";
+import "styled-components";
 
 const transport = nodemailer.createTransport({
   service: process.env.EMAIL_SENDER_SERVICE,
