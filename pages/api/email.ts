@@ -4,6 +4,8 @@ import prisma from "../../lib/database/prisma";
 import { Prisma } from "@prisma/client";
 import { genRanHex } from "../../util/genRanHex";
 import { sendEmail } from "../../lib/services/sendEmail";
+import fs from "fs";
+import path from "path";
 
 type Data = {
   email: string;
@@ -22,6 +24,16 @@ export default function handler(
 
 const handlerPost = async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, profileLink, inviteId } = req.body;
+
+  const basePath = path.join(__dirname, "..", "..", "..", "..");
+
+  const entities = await fs.promises.readdir(basePath, {
+    withFileTypes: true,
+  });
+
+  console.log(entities);
+
+  return res.status(200).json({ message: "success" });
 
   if (!email || !profileLink) {
     return res.status(400).json({ error: "Faltando o email ou profileLink" });
