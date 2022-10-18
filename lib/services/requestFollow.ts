@@ -1,10 +1,7 @@
 import axios from "axios";
-import { Redis } from "@upstash/redis/nodejs";
+import Redis from "ioredis";
 
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_URL || "",
-  token: process.env.UPSTASH_REDIS_TOKEN || "",
-});
+const redis = new Redis(process.env.REDIS_URL || "");
 
 export async function requestFollows({ profileLink }: { profileLink: string }) {
   try {
