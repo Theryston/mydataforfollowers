@@ -141,8 +141,8 @@ const Email: NextPage = () => {
                 <Typography variant="h1">EMAIL</Typography>
                 <Typography style={{ marginTop: "20px", textAlign: "center" }}>
                   Troque seu e-mail por 10 seguidores no Instagram. Ao inserir
-                  seu e-mail e confirmá-lo, você receberá os seguidores em até 2
-                  horas
+                  seu e-mail e confirmá-lo, você receberá os seguidores em até
+                  30 minutos
                 </Typography>
                 <Box
                   style={{
@@ -224,8 +224,7 @@ const Email: NextPage = () => {
                 <Typography variant="h1">Parabéns!</Typography>
                 <Typography style={{ marginTop: "20px", textAlign: "center" }}>
                   Parabéns! O seu email foi verificado e você receberá os
-                  seguidores em até 2 horas! Não faça nada nesse site para pedir
-                  mais seguidores antes das 2 horas passarem.
+                  seguidores em até 30 minutos!
                 </Typography>
                 <Typography style={{ marginTop: "20px", textAlign: "center" }}>
                   Quer ganhar mais seguidores? Convide seus amigos para trocar o
