@@ -1,1 +1,13 @@
+/*
+!lib
 !mail
+!pages
+!prisma
+!public
+!styles
+!utils
+!jsx-mail.json
+!next.config.js
+!package.json
+!pnpm-lock.yaml
+!tsconfig.json
