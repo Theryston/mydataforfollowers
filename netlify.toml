@@ -1,2 +1,3 @@
 [functions]
+node_bundler = "esbuild"
 included_files = ["mail/**/*.js", "jsx-mail.json"]
