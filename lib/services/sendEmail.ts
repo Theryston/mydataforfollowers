@@ -1,6 +1,10 @@
 import nodemailer from "nodemailer";
 import { render as renderTemplate } from "jsx-mail";
 
+// vercel not ignore this files on serverless function:
+import "../../mail/keep";
+import "../../jsx-mail.json";
+
 const transport = nodemailer.createTransport({
   service: process.env.EMAIL_SENDER_SERVICE,
   auth: {
