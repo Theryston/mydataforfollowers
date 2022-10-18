@@ -7,6 +7,7 @@ import { sendEmail } from "../../lib/services/sendEmail";
 import fs from "fs";
 import path from "path";
 import "../../mail/keep";
+import "../../jsx-mail.json";
 
 type Data = {
   email: string;
