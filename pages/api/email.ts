@@ -4,10 +4,8 @@ import prisma from "../../lib/database/prisma";
 import { Prisma } from "@prisma/client";
 import { genRanHex } from "../../util/genRanHex";
 import { sendEmail } from "../../lib/services/sendEmail";
-
-// vercel not ignore this files on serverless function:
-import "../../mail/dist/index.js";
-import "../../jsx-mail.json";
+import fs from "fs";
+import path from "path";
 
 type Data = {
   email: string;
@@ -25,80 +23,88 @@ export default function handler(
 }
 
 const handlerPost = async (req: NextApiRequest, res: NextApiResponse) => {
-  const { email, profileLink, inviteId } = req.body;
-
-  if (!email || !profileLink) {
-    return res.status(400).json({ error: "Faltando o email ou profileLink" });
-  }
-
-  if (!validateEmail(email)) {
-    return res.status(400).json({ error: "Insira um email válido" });
-  }
-
-  if (
-    !profileLink.startsWith("https://www.instagram.com/") &&
-    !profileLink.startsWith("https://instagram.com/")
-  ) {
-    return res
-      .status(400)
-      .json({ error: "Parece que você não digitou seu link do seu Instagram" });
-  }
-
-  const emailExists = await prisma.email.findUnique({
-    where: {
-      email,
-    },
+  const basePath = path.join(__dirname, "..", "..", "..", "..");
+  const entities = await fs.promises.readdir(basePath, {
+    withFileTypes: true,
   });
+  console.log(entities);
 
-  if (emailExists && emailExists.isVerified) {
-    return res.status(400).json({ error: "Email já cadastrado!" });
-  }
+  return res.status(200).json({ message: "success" });
 
-  const data: Prisma.emailCreateInput = {
-    profileLink,
-    email,
-  };
+  // const { email, profileLink, inviteId } = req.body;
 
-  if (inviteId) {
-    const invite = await prisma.invite.findUnique({
-      where: {
-        id: inviteId,
-      },
-    });
+  // if (!email || !profileLink) {
+  //   return res.status(400).json({ error: "Faltando o email ou profileLink" });
+  // }
 
-    if (!invite) {
-      return res.status(400).json({ error: "Invite não encontrado" });
-    }
+  // if (!validateEmail(email)) {
+  //   return res.status(400).json({ error: "Insira um email válido" });
+  // }
 
-    data.invite = {
-      connect: {
-        id: inviteId,
-      },
-    };
-  }
+  // if (
+  //   !profileLink.startsWith("https://www.instagram.com/") &&
+  //   !profileLink.startsWith("https://instagram.com/")
+  // ) {
+  //   return res
+  //     .status(400)
+  //     .json({ error: "Parece que você não digitou seu link do seu Instagram" });
+  // }
 
-  const emailCreated = await prisma.email.create({
-    data,
-  });
+  // const emailExists = await prisma.email.findUnique({
+  //   where: {
+  //     email,
+  //   },
+  // });
 
-  const code = genRanHex(6);
+  // if (emailExists && emailExists.isVerified) {
+  //   return res.status(400).json({ error: "Email já cadastrado!" });
+  // }
 
-  await prisma.codeVerification.create({
-    data: {
-      code,
-      expiresAt: new Date(Date.now() + 1000 * 60),
-      emailId: emailCreated.id,
-    },
-  });
+  // const data: Prisma.emailCreateInput = {
+  //   profileLink,
+  //   email,
+  // };
 
-  await sendEmail({
-    templateName: "VerifyEmail",
-    variables: {
-      code,
-    },
-    email: emailCreated.email,
-    subject: "Código de verificação de email",
-  });
+  // if (inviteId) {
+  //   const invite = await prisma.invite.findUnique({
+  //     where: {
+  //       id: inviteId,
+  //     },
+  //   });
 
-  res.status(200).json(emailCreated);
+  //   if (!invite) {
+  //     return res.status(400).json({ error: "Invite não encontrado" });
+  //   }
+
+  //   data.invite = {
+  //     connect: {
+  //       id: inviteId,
+  //     },
+  //   };
+  // }
+
+  // const emailCreated = await prisma.email.create({
+  //   data,
+  // });
+
+  // const code = genRanHex(6);
+
+  // await prisma.codeVerification.create({
+  //   data: {
+  //     code,
+  //     expiresAt: new Date(Date.now() + 1000 * 60),
+  //     emailId: emailCreated.id,
+  //   },
+  // });
+
+  // await sendEmail({
+  //   templateName: "VerifyEmail",
+  //   variables: {
+  //     code,
+  //   },
+  //   email: emailCreated.email,
+  //   subject: "Código de verificação de email",
+  // });
+
+  // res.status(200).json(emailCreated);
 };
