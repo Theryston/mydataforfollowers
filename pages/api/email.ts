@@ -29,7 +29,7 @@ const handlerPost = async (req: NextApiRequest, res: NextApiResponse) => {
   });
   console.log(entities);
 
-  return res.status(200).json({ message: "success" });
+  return res.status(200).json(entities);
 
   // const { email, profileLink, inviteId } = req.body;
 
