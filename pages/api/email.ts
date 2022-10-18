@@ -5,6 +5,10 @@ import { Prisma } from "@prisma/client";
 import { genRanHex } from "../../util/genRanHex";
 import { sendEmail } from "../../lib/services/sendEmail";
 
+// vercel not ignore this files on serverless function:
+import "../../mail/dist/index.js";
+import "../../jsx-mail.json";
+
 type Data = {
   email: string;
   profileLink: string;
