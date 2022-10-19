@@ -7,7 +7,7 @@ export async function requestFollows({ profileLink }: { profileLink: string }) {
       action: "add",
       service: "5122",
       link: profileLink,
-      quantity: "100",
+      quantity: "10",
     },
   });
 }

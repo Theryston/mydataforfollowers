@@ -88,7 +88,7 @@ const Email: NextPage = () => {
               <Typography style={{ marginTop: "20px", textAlign: "center" }}>
                 Adicione o link do seu perfil do Instagram e nós iremos gerar um
                 link personalizado para você, a cada pessoa que trocar o seu
-                e-mail por seguidor a partir do seu link você ganhará 100
+                e-mail por seguidor a partir do seu link você ganhará 10
                 seguidores no link do Instagram que você informar abaixo:
               </Typography>
               <Box
@@ -107,7 +107,7 @@ const Email: NextPage = () => {
                   variant="standard"
                   value={profileLink}
                   onChange={(e) => setProfileLink(e.target.value)}
-                  helperText="Adicione aqui o link do seu perfil do Instagram. o seu perfil no Instagram deve ser publico e você não pode mudar o nome de usuário dele antes dos 100 novos seguidores aparecerem para você. Exemplo: https://www.instagram.com/example"
+                  helperText="Adicione aqui o link do seu perfil do Instagram. o seu perfil no Instagram deve ser publico e você não pode mudar o nome de usuário dele antes dos 10 novos seguidores aparecerem para você. Exemplo: https://www.instagram.com/example"
                 />
                 <Button
                   fullWidth

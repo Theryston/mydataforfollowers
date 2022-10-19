@@ -140,7 +140,7 @@ const Email: NextPage = () => {
               <>
                 <Typography variant="h1">EMAIL</Typography>
                 <Typography style={{ marginTop: "20px", textAlign: "center" }}>
-                  Troque seu e-mail por 100 seguidores no Instagram. Ao inserir
+                  Troque seu e-mail por 10 seguidores no Instagram. Ao inserir
                   seu e-mail e confirmá-lo, você receberá os seguidores em até
                   30 minutos
                 </Typography>
@@ -168,7 +168,7 @@ const Email: NextPage = () => {
                     variant="standard"
                     value={profileLink}
                     onChange={(e) => setProfileLink(e.target.value)}
-                    helperText="Adicione aqui o link do seu perfil do Instagram. o seu perfil no Instagram deve ser publico e você não pode mudar o nome de usuário dele antes dos 100 novos seguidores aparecerem para você. Exemplo: https://www.instagram.com/example"
+                    helperText="Adicione aqui o link do seu perfil do Instagram. o seu perfil no Instagram deve ser publico e você não pode mudar o nome de usuário dele antes dos 10 novos seguidores aparecerem para você. Exemplo: https://www.instagram.com/example"
                   />
                   <Button
                     fullWidth
