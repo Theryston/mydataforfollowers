@@ -26,5 +26,6 @@ export async function getStaticProps() {
     props: {
       emails: JSON.parse(JSON.stringify(emails)),
     },
+    revalidate: 10,
   };
 }
