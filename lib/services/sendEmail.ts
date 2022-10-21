@@ -7,12 +7,20 @@ import "react";
 import "styled-components";
 
 const transport = nodemailer.createTransport({
-  service: process.env.EMAIL_SENDER_SERVICE,
+  host: "smtpout.secureserver.net",
+  secure: true,
+  secureConnection: false, // TLS requires secureConnection to be false
+  tls: {
+    ciphers: "SSLv3",
+  },
+  requireTLS: true,
+  port: 465,
+  debug: true,
   auth: {
     user: process.env.EMAIL_SENDER_USERNAME,
     pass: process.env.EMAIL_SENDER_PASSWORD,
   },
-});
+} as any);
 
 export async function sendEmail({
   templateName,
@@ -28,7 +36,7 @@ export async function sendEmail({
   const html = await renderTemplate(templateName, variables);
 
   const { messageId } = await transport.sendMail({
-    from: process.env.EMAIL_SENDER_USERNAME,
+    from: `"My Data For Followers" <${process.env.EMAIL_SENDER_USERNAME}>`,
     to: email,
     subject,
     html,
