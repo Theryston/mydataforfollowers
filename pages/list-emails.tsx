@@ -24,7 +24,10 @@ export async function getStaticProps() {
 
   return {
     props: {
-      emails: JSON.parse(JSON.stringify(emails)),
+      emails: emails.map((email) => ({
+        id: email.id,
+        email: email.email,
+      })),
     },
     revalidate: 10,
   };
